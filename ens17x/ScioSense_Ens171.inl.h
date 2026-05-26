@@ -217,7 +217,7 @@ static inline bool Ens17x_IsConnected(ScioSense_Ens17x* ens17x, uint16_t expecte
     return ens17x->partId == expectedPartId;
 }
 
-static inline uint32_t calculateResistance(const uint16_t r)
+static inline uint32_t Ens17x_calculateResistance(const uint16_t r)
 {
     return (uint32_t)pow(2, (float)(r) / 2048);
 }
@@ -225,19 +225,19 @@ static inline uint32_t calculateResistance(const uint16_t r)
 static inline uint32_t Ens17x_GetRs1(ScioSense_Ens17x* ens17x)
 {
     uint16_t r = (ens17x->resistanceBuffer[ENS17X_BUFFER_INFO_RS1_INDEX + 1] << 8) + ens17x->resistanceBuffer[ENS17X_BUFFER_INFO_RS1_INDEX];
-    return calculateResistance(r);
+    return Ens17x_calculateResistance(r);
 }
 
 static inline uint32_t Ens17x_GetRs2(ScioSense_Ens17x* ens17x)
 {
     uint16_t r = (ens17x->resistanceBuffer[ENS17X_BUFFER_INFO_RS2_INDEX + 1] << 8) + ens17x->resistanceBuffer[ENS17X_BUFFER_INFO_RS2_INDEX];
-    return calculateResistance(r);
+    return Ens17x_calculateResistance(r);
 }
 
 static inline uint32_t Ens17x_GetRs3(ScioSense_Ens17x* ens17x)
 {
     uint16_t r = (ens17x->resistanceBuffer[ENS17X_BUFFER_INFO_RS3_INDEX + 1] << 8) + ens17x->resistanceBuffer[ENS17X_BUFFER_INFO_RS3_INDEX];
-    return calculateResistance(r);
+    return Ens17x_calculateResistance(r);
 }
 
 static inline uint8_t* Ens17x_GetFirmwareVersion(ScioSense_Ens17x* ens17x)
